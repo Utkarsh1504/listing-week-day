@@ -21,4 +21,4 @@ export const jobSlice = createSlice({
   },
 });
 
-export const { updateJobCount, updateJobList, setJobList } = jobSlice.reducer;
+export const { updateJobCount, updateJobList, setJobList } = jobSlice.actions;

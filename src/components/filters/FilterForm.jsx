@@ -10,7 +10,7 @@ import {
 import makeAnimated from "react-select/animated";
 import "./filter-form.css";
 
-const FilterForm = ({ filters, setFilter }) => {
+const FilterForm = ({ filters, setFilters }) => {
   // for animation effect
   const animatedComponents = makeAnimated();
 
@@ -27,7 +27,7 @@ const FilterForm = ({ filters, setFilter }) => {
           components={animatedComponents}
           isClearable={true}
           onChange={(selectedOptions) =>
-            setFilter({
+            setFilters({
               ...filters,
               roles: selectedOptions.map((option) => option.value),
             })
@@ -44,7 +44,7 @@ const FilterForm = ({ filters, setFilter }) => {
           components={animatedComponents}
           isClearable={true}
           onChange={(data) =>
-            setFilter({ ...filters, employees: data?.value || null })
+            setFilters({ ...filters, employees: data?.value || null })
           }
         />
       </div>
@@ -58,7 +58,7 @@ const FilterForm = ({ filters, setFilter }) => {
           options={experienceOptions}
           className="select"
           onChange={(data) =>
-            setFilter({ ...filters, experience: data?.value || null })
+            setFilters({ ...filters, experience: data?.value || null })
           }
         />
       </div>
@@ -74,7 +74,7 @@ const FilterForm = ({ filters, setFilter }) => {
           isClearable={true}
           options={modeOptions}
           onChange={(data) =>
-            setFilter({
+            setFilters({
               ...filters,
               mode: data.map((mode) => mode?.value),
             })
@@ -91,7 +91,7 @@ const FilterForm = ({ filters, setFilter }) => {
           isClearable={true}
           options={minSalaryOptions}
           onChange={(data) =>
-            setFilter({ ...filters, minPay: data?.value || null })
+            setFilters({ ...filters, minPay: data?.value || null })
           }
         />
       </div>
@@ -104,7 +104,7 @@ const FilterForm = ({ filters, setFilter }) => {
           placeholder="Enter Company Name"
           value={filters.companyName || ""}
           onChange={(e) =>
-            setFilter({ ...filters, companyName: e.target.value })
+            setFilters({ ...filters, companyName: e.target.value })
           }
         />
       </div>

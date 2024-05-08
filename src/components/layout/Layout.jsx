@@ -5,6 +5,7 @@ import { updateJobCount, updateJobList } from "../../stores/jobSlice";
 import FilterForm from "../filters/FilterForm";
 import JobCard from "../jobs/JobCard";
 import CardSkeleton from "../skeletons/CardSkeleton";
+import { filterData } from "../../utils/helpers";
 import { defaultFilters } from "../../utils/constants";
 import "./layout.css";
 
@@ -55,11 +56,9 @@ const Layout = () => {
   }, []);
 
   useEffect(() => {
-    const filteredData = jobList?.filter((job) => {
-      // apply filtering logic to display jobs based on filters
-    });
+    const filteredData = filterData(filters, jobList);
     setJobs(filteredData);
-  }, []);
+  }, [filters, jobList]);
 
   return (
     <div className="app-container">
