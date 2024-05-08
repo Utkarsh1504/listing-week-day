@@ -1,13 +1,20 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchData } from "../../actions/fetchData";
+import { updateJobCount, updateJobList } from "../../stores/jobSlice";
 import FilterForm from "../filters/FilterForm";
 import JobCard from "../jobs/JobCard";
 import CardSkeleton from "../skeletons/CardSkeleton";
+import { defaultFilters } from "../../utils/constants";
 import "./layout.css";
 
 const Layout = () => {
+  const dispatch = useDispatch();
+  const jobList = useSelector((state) => state.jobList);
+
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [filters, setFilters] = useState(defaultFilters);
 
   // fetching and dispatching api data into our redux store
   const fetchJobData = async () => {
@@ -16,7 +23,8 @@ const Layout = () => {
       const response = await fetchData();
       if (!response) return;
 
-      setJobs(response.jdList);
+      dispatch(updateJobList(response.jdList));
+      dispatch(updateJobCount(response.totalCount));
     } catch (error) {
       console.log(error);
     } finally {
@@ -46,6 +54,13 @@ const Layout = () => {
     return () => window.removeEventListener("scroll", intersectionObserver);
   }, []);
 
+  useEffect(() => {
+    const filteredData = jobList?.filter((job) => {
+      // apply filtering logic to display jobs based on filters
+    });
+    setJobs(filteredData);
+  }, []);
+
   return (
     <div className="app-container">
       <h2
@@ -58,7 +73,7 @@ const Layout = () => {
         Weekday Job Listing
       </h2>
       <div className="filter-container">
-        <FilterForm />
+        <FilterForm filters={filters} setFilters={setFilters} />
       </div>
 
       <div className="jobs-container">

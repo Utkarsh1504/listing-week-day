@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import Select from "react-select";
 import {
   experienceOptions,
@@ -9,13 +10,12 @@ import {
 import makeAnimated from "react-select/animated";
 import "./filter-form.css";
 
-const FilterForm = () => {
+const FilterForm = ({ filters, setFilter }) => {
   // for animation effect
   const animatedComponents = makeAnimated();
 
   return (
     <div className="filters">
-
       <div className="select-container">
         <label className="label">Roles</label>
         <Select
@@ -26,6 +26,12 @@ const FilterForm = () => {
           closeMenuOnSelect={false}
           components={animatedComponents}
           isClearable={true}
+          onChange={(selectedOptions) =>
+            setFilter({
+              ...filters,
+              roles: selectedOptions.map((option) => option.value),
+            })
+          }
         />
       </div>
 
@@ -37,6 +43,9 @@ const FilterForm = () => {
           className="select"
           components={animatedComponents}
           isClearable={true}
+          onChange={(data) =>
+            setFilter({ ...filters, employees: data?.value || null })
+          }
         />
       </div>
 
@@ -48,6 +57,9 @@ const FilterForm = () => {
           isClearable={true}
           options={experienceOptions}
           className="select"
+          onChange={(data) =>
+            setFilter({ ...filters, experience: data?.value || null })
+          }
         />
       </div>
 
@@ -61,6 +73,12 @@ const FilterForm = () => {
           components={animatedComponents}
           isClearable={true}
           options={modeOptions}
+          onChange={(data) =>
+            setFilter({
+              ...filters,
+              mode: data.map((mode) => mode?.value),
+            })
+          }
         />
       </div>
 
@@ -72,6 +90,9 @@ const FilterForm = () => {
           components={animatedComponents}
           isClearable={true}
           options={minSalaryOptions}
+          onChange={(data) =>
+            setFilter({ ...filters, minPay: data?.value || null })
+          }
         />
       </div>
 
@@ -81,9 +102,12 @@ const FilterForm = () => {
           type="text"
           className="text-field"
           placeholder="Enter Company Name"
+          value={filters.companyName || ""}
+          onChange={(e) =>
+            setFilter({ ...filters, companyName: e.target.value })
+          }
         />
       </div>
-      
     </div>
   );
 };
