@@ -15,6 +15,7 @@ const JobCard = ({ job }) => {
     logoUrl,
   } = job;
 
+  // handling null salary field
   const salary =
     minJdSalary && maxJdSalary
       ? `${minJdSalary} - ${maxJdSalary} LPA`
@@ -24,6 +25,7 @@ const JobCard = ({ job }) => {
       ? `${maxJdSalary} LPA`
       : "Undisclosed";
 
+  // handling null experience field
   const experience =
     minExp && maxExp
       ? `${minExp} - ${maxExp} years`

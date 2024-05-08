@@ -1,0 +1,153 @@
+.jobs {
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.card {
+  width: 100%;
+  height: fit-content;
+  max-width: 320px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 1.2rem;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 4px 0px !important;
+  border-radius: 20px;
+  position: relative;
+}
+
+.card:hover {
+  transform: scale(1.01);
+  transition: all;
+  animation: scale 0.1s ease-in-out;
+}
+
+
+@keyframes animate {
+  0% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.01);
+  }
+}
+
+
+.companyInfo {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+}
+
+.logo {
+  width: 4rem;
+  height: 100%;
+  margin-right: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.jobInfo-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.salary {
+  display: flex;
+  gap: 0.5rem;
+  font-weight: 400;
+  margin-top: 1rem;
+}
+.about {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.jobDetail {
+  font-size: 14px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.exp{
+  display: flex;
+  gap: 0.2rem;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.overlay {
+  display: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.8) 33%, rgba(255, 255, 255, 0.6) 50%);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.button {
+  padding: 0.8rem;
+  border-radius: 6px;
+  border: none;
+  background-color: rgb(85, 239, 196);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-top: 1rem;
+  font-weight: bold;
+  font-size: 1rem;
+  text-decoration: none;
+  color: black;
+}
+
+.label {
+  position: absolute;
+  top: -1rem;
+  left: 0.4rem;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 420px) {
+  .container {
+    padding: 1.2rem;
+  }
+}
