@@ -1,7 +1,10 @@
 /* eslint-disable react/prop-types */
 import "./jobs.css";
+import { capitalize } from "../../utils/helpers";
+import { useState } from "react";
 
 const JobCard = ({ job }) => {
+  const [showMore, setShowMore] = useState(false);
   const {
     jdLink,
     jobDetailsFromCompany,
@@ -45,8 +48,8 @@ const JobCard = ({ job }) => {
           <span style={{ fontWeight: "bold", color: "#8b8b8b" }}>
             {companyName}
           </span>
-          <span>{jobRole}</span>
-          <span style={{ fontSize: 12 }}>{location}</span>
+          <span>{capitalize(jobRole)}</span>
+          <span style={{ fontSize: 12 }}>{capitalize(location)}</span>
         </div>
       </div>
       <div className="salary">
@@ -57,7 +60,27 @@ const JobCard = ({ job }) => {
       <div className="about">
         <span style={{ fontWeight: "500" }}>About Company:</span>
         <div style={{ fontWeight: "600" }}>About us</div>
-        <div className="jobDetail">{jobDetailsFromCompany}</div>
+        <div
+          className="jobDetail"
+          style={{ height: showMore ? "fit-content" : "12rem" }}
+          onClick={() => showMore && setShowMore(false)}
+        >
+          <span>{jobDetailsFromCompany}</span>
+          {!showMore && <div className="overlay" />}
+          {!showMore && (
+            <span
+              style={{
+                position: "absolute",
+                bottom: "1rem",
+                cursor: "pointer",
+                color: "#4943da",
+              }}
+              onClick={() => setShowMore(!showMore)}
+            >
+              View Job
+            </span>
+          )}
+        </div>
       </div>
       <div className="exp">
         <span

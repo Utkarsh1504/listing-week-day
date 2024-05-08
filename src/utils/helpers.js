@@ -39,7 +39,8 @@ export function filterData(filter, jobList) {
   // filtering based on experience
   if (filter?.experience) {
     filteredList = filteredList?.filter(
-      (jd) => jd?.minExp <= filter?.experience && jd?.maxExp >= filter?.experience
+      (jd) =>
+        jd?.minExp <= filter?.experience && jd?.maxExp >= filter?.experience
     );
   }
 
@@ -61,3 +62,10 @@ export function filterData(filter, jobList) {
 
   return filteredList;
 }
+
+export const capitalize = (str = "") => {
+  return str
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};
