@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { fetchData } from "../../actions/fetchData";
 import FilterForm from "../filters/FilterForm";
+import JobCard from "../jobs/JobCard";
+import "./layout.css";
 
 const Layout = () => {
   const [jobs, setJobs] = useState([]);
@@ -33,9 +35,11 @@ const Layout = () => {
 
       <FilterForm />
 
-      {jobs?.map((job, index) => (
-        <div key={index}>{job.jobRole}</div>
-      ))}
+      <div className="jobs-container">
+        {jobs?.map((job, index) => (
+          <JobCard job={job} key={index} />
+        ))}
+      </div>
     </div>
   );
 };
