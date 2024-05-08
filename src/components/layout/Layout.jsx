@@ -1,9 +1,11 @@
-
+import FilterForm from "../filters/FilterForm";
 
 const Layout = () => {
   return (
-    <div>Layout</div>
-  )
-}
+    <div className="app-container">
+      <FilterForm />
+    </div>
+  );
+};
 
-export default Layout
+export default Layout;
